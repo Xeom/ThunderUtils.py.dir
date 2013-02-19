@@ -7,14 +7,16 @@ import Derps
 
 import NameSystem
 import OnlinePlayers
-import Schematics
-#import DomainNameForcer
 
 import Bus
 
 @hook.enable
 def onEnable():
     Derps.load_derps("plugins/ThunderUtils.py.dir/derps.txt")
+
+@hook.disable
+def onDisable():
+    return
 
 
 
