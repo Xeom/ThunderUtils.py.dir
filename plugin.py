@@ -8,7 +8,7 @@ import Derps
 import NameSystem
 import OnlinePlayers
 import Schematics
-import DomainNameForcer
+#import DomainNameForcer
 
 import Bus
 

@@ -40,12 +40,3 @@ def onCommandFixname(sender, args):
     # WIP
 
     return True
-
-@hook.command("nameformat")
-def onCommandNameFormat(sender, args):
-    if len(args) < 3:
-        return False
-
-    # WIP
-
-    return True
