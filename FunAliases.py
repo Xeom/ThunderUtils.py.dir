@@ -69,6 +69,7 @@ def onCommandLag(sender, args):
 def onCommandJoin(sender, args):
     if len(args) < 1:
         sender.sendMessage("Improper usage! /join <player> [location]")
+        return True
     bukkit.Bukkit.broadcastMessage(''.join([color("e"), args[0], " joined the game"]))
     
     if len(args) > 1:
