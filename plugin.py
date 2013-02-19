@@ -14,7 +14,7 @@ import Bus
 
 @hook.enable
 def onEnable():
-    Derps.load_derps("plugins/RDF.py.dir/derps.txt")
+    Derps.load_derps("plugins/ThunderUtils.py.dir/derps.txt")
 
 
 
