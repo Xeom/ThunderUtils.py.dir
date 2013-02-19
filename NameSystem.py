@@ -16,14 +16,14 @@ def onCommandRainbowname(sender, args):
             ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
             if i-1 == int(j*GSize):
                 j+=1
-            
     sudo(''.join(['nick ',SName,' ',ResultName]))
-    
+    sender.sendMessage(''.join([color("e"),'Congratulations! You got a rainbow name!']))
     return True
     
 @hook.command("resetname", description="Resets any name changes.")
 def onCommandResetname(sender, args):
     sudo(''.join(['nick ',sender.getName(),' ',sender.getName()]))
+    sender.sendMessage(''.join([color("e"),'You have reset your name.']))
     return True
 
 @hook.command("tags", description="View the tags of the RDF")
