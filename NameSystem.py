@@ -1,31 +1,40 @@
 from Helper import color
 from Helper import sudo
 
-@hook.command("rainbowname", description="Give you a nice rainbow-coloured name(Fix with /resetname)")
-def onCommandRainbowname(sender, args):
+@hook.command("nameformat", description="Nameformatting! Try: /nameformat d l")
+def onCommandNameformat(sender, args):
     SName=sender.getName()
-    ResultName=''
-    Colours='4c6e23915dd'
-    GSize=len(SName)/10.0
-    if GSize<=1:
-       for i in range(len(SName)):
-            ResultName+='&'+Colours[i:i+1]+SName[i:i+1]
+    Formatting=''
+    rainbow=0
+    if len(args)<1:
+        Formatting='&b'
     else:
-        j=0
-        for i in range(len(SName)):
-            ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
-            if i-1 == int(j*GSize):
-                j+=1
+        for i in args:
+            if i=='rainbow':
+                rainbow=1
+            else:
+                if i[0,1]!='k':
+                    Formatting+='&'+i[0,1]
     
-    sender.sendMessage(''.join([color("e"),'Congratulations! You got a rainbow name!']))
-    sudo(''.join(['/nick ',SName,' ',ResultName]))
-    
-    return True
-    
-@hook.command("resetname", description="Resets any name changes.")
-def onCommandResetname(sender, args):
-    sender.sendMessage(''.join([color("e"),'You have reset your name.']))
-    sudo(''.join(['/nick ',sender.getName(),' ',sender.getName()]))
+    if rainbow=0:
+        sudo(''.join(['/nick ',SName,' ',Formatting,SName]))
+        sender.sendMessage(''.join([Formatting,'Your name now looks like this!']))
+    else:
+        ResultName=''
+        Colours='4c6e23915dd'
+        GSize=len(SName)/10.0
+        if GSize<=1:
+           for i in range(len(SName)):
+                ResultName+='&'+Colours[i:i+1]+SName[i:i+1]
+        else:
+            j=0
+            for i in range(len(SName)):
+                ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
+                if i-1 == int(j*GSize):
+                    j+=1
+        
+        sender.sendMessage(''.join([color("e"),'Congratulations! You got a rainbow name!']))
+        sudo(''.join(['/nick ',SName,' ',ResultName]))
     return True
 
 @hook.command("tags", description="View the tags of the RDF")
