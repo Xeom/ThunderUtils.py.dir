@@ -34,7 +34,7 @@ def onCommandNameformat(sender, args):
                     j+=1
         
         sender.sendMessage(''.join([color("e"),'Congratulations! You got a rainbow name!']))
-        sudo(''.join(['/nick ',SName,' ',ResultName]))
+        sudo(''.join(['nick ',SName,' ',ResultName]))
     return True
 
 @hook.command("tags", description="View the tags of the RDF")
