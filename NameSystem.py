@@ -13,8 +13,8 @@ def onCommandNameformat(sender, args):
             if i=='rainbow':
                 rainbow=1
             else:
-                if i[0,1]!='k':
-                    Formatting+='&'+i[0,1]
+                if i[0:1]!='k':
+                    Formatting+='&'+i[0:1]
     
     if rainbow==0:
         sudo(''.join(['/nick ',SName,' ',Formatting,SName]))
