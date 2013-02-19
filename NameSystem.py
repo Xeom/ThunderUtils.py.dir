@@ -16,7 +16,7 @@ def onCommandNameformat(sender, args):
                 if i[0,1]!='k':
                     Formatting+='&'+i[0,1]
     
-    if rainbow=0:
+    if rainbow==0:
         sudo(''.join(['/nick ',SName,' ',Formatting,SName]))
         sender.sendMessage(''.join([Formatting,'Your name now looks like this!']))
     else:
