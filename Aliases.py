@@ -11,14 +11,14 @@ import org.bukkit as bukkit
 # /fixme
 
 # Time Commands
-@hook.command("day", description="Sets your time to day.")
-def onCommandDay(sender, args):
-    bukkit.Bukkit.dispatchCommand(sender, "ptime @noon")
+@hook.command("day", description="Set your time to day.")
+def onCommandDay(sender,args):
+    sender.setPlayerTime(6000,0)
     return True
 
-@hook.command("night", description="Sets your time to night.")
-def onCommandNight(sender, args):
-    bukkit.Bukkit.dispatchCommand(sender, "ptime @midnight")
+@hook.command("night", descriptoin="Set your time to night.")
+def onCommandNight(sender,args):
+    sender.setPlayerTime(18000,0)
     return True
 
 # Fix lag

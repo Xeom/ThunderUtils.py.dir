@@ -7,8 +7,7 @@ import Derps
 
 import NameSystem
 import OnlinePlayers
-
-import Bus
+import Time
 
 @hook.enable
 def onEnable():
