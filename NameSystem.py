@@ -8,19 +8,19 @@ def onCommandNameformat(sender, args):
     rainbow=0
     ColourWhitelist='0123456789abcdef'
     FontWhitelist='olm'
-    if len(args)<1:
-        Formatting='&b'
-    else:
+    DoStuff=1
+    if len(args)>=1:
         p=sender.getServer().getPlayer(args[0])
         if p!=null:
-            onCommandNameformat(p,args[i+1] for i in range(len(args)-1))
+            DoStuff=0
+            onCommandNameformat(p,args[i] for i in range(len(1,args)))
             sender.sendMessage(''.join([color("e"),'You changed ',p.getName(),"'s name formatting."]))
         else:
             if args[0]=='multi':
-                if args[1][0:1] in FontWhitelist:
+                if FontWhitelist.find(args[1][0:1])!=-1:
                     Colours=''
                     for i in range(2,len(args)-2):
-                        if args[i][0:1] in ColourWhitelist:
+                        if ColourWhitelist.find(args[i][0:1])!=-1:
                             Colours+=args[i][0:1]
                         else:
                             sender.sendMessage(''.join(args[i][0:1],' is not permitted! You need to use a valid colour.'))
@@ -31,9 +31,12 @@ def onCommandNameformat(sender, args):
                     else:
                         j=0
                         for i in range(len(SName)):
-                            ResultName+='&'+Colours[j:j+1]+'&'+args[1][0:1]+SName[i:i+1]
+                            if i==0:
+                                ResultName+='&'+Colours[j:j+1]+'&'+args[1][0:1]+SName[i:i+1]
                             if i-1 == int(j*GSize):
                                 j+=1
+                                ResultName+='&'+Colours[j:j+1]+'&'+args[1][0:1]+SName[i:i+1]
+
                     sender.sendMessage(''.join([color("e"),'Congrats, you got a multicoloured name!']))
                     sudo(''.join(["nick ",SName," ",ResultName]))
                 else:
@@ -43,31 +46,34 @@ def onCommandNameformat(sender, args):
                     if i=='rainbow':
                         rainbow=1
                     else:
-                        if i[0:1] in ColourWhitelist or i[0:1] in FontWhitelist:
+                        if ColourWhitelist.find(i[0:1])!=-1 or FontWhitelist.find(i[0:1])!=-1:
                             Formatting+='&'+i[0:1]
                         else:
                             sender.sendMessage(''.join(i[0:1],' is not permitted!'))
                             return False
     
-    if rainbow==0:
-        sudo(''.join(["nick ",SName," ",Formatting,SName]))
-        sender.sendMessage(''.join([Formatting.replace('&',u'\u00A7'),'Your name now looks like this!']))
-    else:
-        ResultName=''
-        Colours='4c6e23915dd'
-        GSize=len(SName)/10.0
-        if GSize<=1:
-           for i in range(len(SName)):
-                ResultName+='&'+Colours[i:i+1]+SName[i:i+1]
+    if DoStuff==1:
+        if rainbow==0:
+            sudo(''.join(["nick ",SName," ",Formatting,SName]))
+            sender.sendMessage(''.join([Formatting.replace('&',u'\u00A7'),'Your name now looks like this!']))
         else:
-            j=0
-            for i in range(len(SName)):
-                ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
-                if i-1 == int(j*GSize):
-                    j+=1
-        
-        sender.sendMessage(''.join([color("e"),'Congratulations! You got a rainbow name!']))
-        sudo(''.join(["nick ",SName," ",ResultName]))
+            ResultName=''
+            Colours='4c6e23915dd'
+            GSize=len(SName)/10.0
+            if GSize<=1:
+               for i in range(len(SName)):
+                    ResultName+='&'+Colours[i:i+1]+SName[i:i+1]
+            else:
+                j=0
+                for i in range(len(SName)):
+                    if i==0:
+                        ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
+                    if i-1 == int(j*GSize):
+                        j+=1
+                        ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
+            
+            sender.sendMessage(''.join([color("e"),'Congratulations! You got a rainbow name!']))
+            sudo(''.join(["nick ",SName," ",ResultName]))
     return True
 
 @hook.command("tags", description="View the tags of the RDF")
