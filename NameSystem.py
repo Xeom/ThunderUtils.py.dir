@@ -13,7 +13,7 @@ def onCommandNameformat(sender, args):
     else:
         p=sender.getServer().getPlayer(args[0])
         if p!=null:
-            onCommandNameformat(p,args[i+1] for i in range(len(args)-1))
+            onCommandNameformat(p,args[1:len(args)-1])
             sender.sendMessage(''.join([color("e"),'You changed ',p.getName(),"'s name formatting."]))
         else:
             if args[0]=='multi':
