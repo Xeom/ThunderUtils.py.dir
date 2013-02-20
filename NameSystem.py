@@ -17,32 +17,35 @@ def onCommandNameformat(sender, args):
             sender.sendMessage(''.join([color("e"),'You changed ',p.getName(),"'s name formatting."]))
         else:
             if args[0]=='multi':
-                if FontWhitelist.find(args[1][0:1])!=-1:
-                    Colours=''
-                    ResultName=''
-                    for i in range(2,len(args)-2):
-                        if ColourWhitelist.find(args[i][0:1])!=-1:
-                            Colours+=args[i][0:1]
-                        else:
-                            sender.sendMessage(''.join(args[i][0:1],' is not permitted! You need to use a valid colour.'))
-                    GSize=len(SName)/10.0
-                    if GSize<=1:
-                       for i in range(len(SName)):
-                            ResultName+='&'+Colours[i:i+1]+'&'+args[1][0:1]+SName[i:i+1]
-                    else:
-                        j=0
-                        for i in range(len(SName)):
-                            if i==0:
-                                ResultName+='&'+Colours[j:j+1]+'&'+args[1][0:1]+SName[i:i+1]
-                            if i-1 == int(j*GSize):
-                                j+=1
-                                ResultName+='&'+Colours[j:j+1]+'&'+args[1][0:1]+SName[i:i+1]
+    			Colours=''
+				ResultName=''
+				for i in range(1,len(args)):
+					if ColourWhitelist.find(args[i][0:1])!=-1:
+						Colours+=args[i][0:1]
+					else:
+						sender.sendMessage(''.join(args[i][0:1],' is not permitted! You need to use a valid colour.'))
+				GSize=len(SName)/float(len(Colours))
+				if GSize<=1:
+				   for i in range(len(SName)):
+						ResultName+='&'+Colours[i:i+1]+SName[i:i+1]
+				else:
+					j=0
+					for i in range(len(SName)):
+						if i==0:
+							ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
+						else:
+							if i-1 == int((j+1)*GSize):
+								j+=1
+								if j<len(Colours):
+									ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
+								else:
+									ResultName+=SName[i:i+1]
+							else:
+								ResultName+=SName[i:i+1]
 
-                    sender.sendMessage(''.join([color("e"),'Congrats, you got a multicoloured name!']))
-                    sudo(''.join(["nick ",SName," ",ResultName]))
-                    DoStuff=0
-                else:
-                    sender.sendMessage(''.join(args[1][0:1],' is not permitted! You need to use a valid font.'))
+				sender.sendMessage(''.join([color("e"),'Congrats, you got a multicoloured name! ',ResultName]))
+				sudo(''.join(["nick ",SName," ",ResultName]))
+				DoStuff=0
             else:
                 for i in args:
                     if i=='rainbow':
