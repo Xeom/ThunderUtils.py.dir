@@ -1,7 +1,7 @@
 from Helper import color
 from Helper import sudo
 
-@hook.command("nameformat", description="Nameformatting! Try: /nameformat d l")
+@hook.command("nameformat", description="Nameformatting. Try: /nameformat d l")
 def onCommandNameformat(sender, args):
     SName=sender.getName()
     Formatting=''
@@ -17,35 +17,35 @@ def onCommandNameformat(sender, args):
             sender.sendMessage(''.join([color("e"),'You changed ',p.getName(),"'s name formatting."]))
         else:
             if args[0]=='multi':
-    			Colours=''
-				ResultName=''
-				for i in range(1,len(args)):
-					if ColourWhitelist.find(args[i][0:1])!=-1:
-						Colours+=args[i][0:1]
-					else:
-						sender.sendMessage(''.join(args[i][0:1],' is not permitted! You need to use a valid colour.'))
-				GSize=len(SName)/float(len(Colours))
-				if GSize<=1:
-				   for i in range(len(SName)):
-						ResultName+='&'+Colours[i:i+1]+SName[i:i+1]
+    		Colours=''
+		ResultName=''
+		for i in range(1,len(args)):
+			if ColourWhitelist.find(args[i][0:1])!=-1:
+				Colours+=args[i][0:1]
+			else:
+				sender.sendMessage(''.join(args[i][0:1],' is not permitted! You need to use a valid colour.'))
+		GSize=len(SName)/float(len(Colours))
+		if GSize<=1:
+		   for i in range(len(SName)):
+				ResultName+='&'+Colours[i:i+1]+SName[i:i+1]
+		else:
+			j=0
+			for i in range(len(SName)):
+				if i==0:
+					ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
 				else:
-					j=0
-					for i in range(len(SName)):
-						if i==0:
+					if i-1 == int((j+1)*GSize):
+						j+=1
+						if j<len(Colours):
 							ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
 						else:
-							if i-1 == int((j+1)*GSize):
-								j+=1
-								if j<len(Colours):
-									ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
-								else:
-									ResultName+=SName[i:i+1]
-							else:
-								ResultName+=SName[i:i+1]
+							ResultName+=SName[i:i+1]
+					else:
+						ResultName+=SName[i:i+1]
 
-				sender.sendMessage(''.join([color("e"),'Congrats, you got a multicoloured name! ',ResultName]))
-				sudo(''.join(["nick ",SName," ",ResultName]))
-				DoStuff=0
+		sender.sendMessage(''.join([color("e"),'Congrats, you got a multicoloured name! ',ResultName]))
+		sudo(''.join(["nick ",SName," ",ResultName]))
+		DoStuff=0
             else:
                 for i in args:
                     if i=='rainbow':
