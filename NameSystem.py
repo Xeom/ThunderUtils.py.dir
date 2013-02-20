@@ -13,12 +13,13 @@ def onCommandNameformat(sender, args):
         p=sender.getServer().getPlayer(args[0])
         if p!=None:
             DoStuff=0
-            onCommandNameformat(p,args[1:len(args)-1])
+            onCommandNameformat(p,args[1:len(args)])
             sender.sendMessage(''.join([color("e"),'You changed ',p.getName(),"'s name formatting."]))
         else:
             if args[0]=='multi':
                 if FontWhitelist.find(args[1][0:1])!=-1:
                     Colours=''
+                    ResultName=''
                     for i in range(2,len(args)-2):
                         if ColourWhitelist.find(args[i][0:1])!=-1:
                             Colours+=args[i][0:1]
@@ -39,6 +40,7 @@ def onCommandNameformat(sender, args):
 
                     sender.sendMessage(''.join([color("e"),'Congrats, you got a multicoloured name!']))
                     sudo(''.join(["nick ",SName," ",ResultName]))
+                    DoStuff=0
                 else:
                     sender.sendMessage(''.join(args[1][0:1],' is not permitted! You need to use a valid font.'))
             else:
