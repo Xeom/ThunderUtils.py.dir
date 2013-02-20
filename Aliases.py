@@ -3,21 +3,19 @@ from Helper import sudo
 
 import org.bukkit as bukkit
 
-# TODO:
-# /ra
-# /expr
-# /me
 # /fast
 # /fixme
 
 # Time Commands
 @hook.command("day", description="Set your time to day.")
 def onCommandDay(sender,args):
+    sender.sendMessage("Your time was set to day.")
     sender.setPlayerTime(6000,0)
     return True
 
 @hook.command("night", descriptoin="Set your time to night.")
 def onCommandNight(sender,args):
+    sender.sendMessage("Your time was set to night.")
     sender.setPlayerTime(18000,0)
     return True
 
