@@ -11,7 +11,7 @@ def onCommandNameformat(sender, args):
     DoStuff=1
     if len(args)>=1:
         p=sender.getServer().getPlayer(args[0])
-        if p!=null:
+        if p!=None:
             DoStuff=0
             onCommandNameformat(p,args[1:len(args)-1])
             sender.sendMessage(''.join([color("e"),'You changed ',p.getName(),"'s name formatting."]))
