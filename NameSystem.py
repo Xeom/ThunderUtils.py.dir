@@ -1,7 +1,7 @@
 from Helper import color
 from Helper import sudo
 
-@hook.command("nameformat", description="Nameformatting! Try: /nameformat d l")
+@hook.command("nameformat", description="Nameformatting. Try: /nameformat d l")
 def onCommandNameformat(sender, args):
     SName=sender.getName()
     Formatting=''
