@@ -37,7 +37,7 @@ def onCommandNameformat(sender, args):
                     sender.sendMessage(''.join([color("e"),'Congrats, you got a multicoloured name!']))
                     sudo(''.join(["nick ",SName," ",ResultName]))
                 else:
-                    sender.sendMessage(''.join(args[i][0:1],' is not permitted! You need to use a valid font.'))
+                    sender.sendMessage(''.join(args[1][0:1],' is not permitted! You need to use a valid font.'))
             else:
                 for i in args:
                     if i=='rainbow':
