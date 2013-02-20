@@ -68,8 +68,7 @@ def onCommandLag(sender, args):
 @hook.command("join", description="Make someone join the server!", usage="/<command> <player> [location]")
 def onCommandJoin(sender, args):
     if len(args) < 1:
-        sender.sendMessage("Improper usage! /join <player> [location]")
-        return True
+        return False
     bukkit.Bukkit.broadcastMessage(''.join([color("e"), args[0], " joined the game"]))
     
     if len(args) > 1:
