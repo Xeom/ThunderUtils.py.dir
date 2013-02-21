@@ -71,11 +71,9 @@ def onCommandNameformat(sender, args):
             else:
                 j=0
                 for i in range(len(SName)):
-                    if i==0:
-                        ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
+                    ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
                     if i-1 == int(j*GSize):
                         j+=1
-                        ResultName+='&'+Colours[j:j+1]+SName[i:i+1]
             
             sender.sendMessage(''.join([color("e"),'Congratulations! You got a rainbow name!']))
             sudo(''.join(["nick ",SName," ",ResultName]))
