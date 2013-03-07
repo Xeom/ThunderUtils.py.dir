@@ -47,7 +47,7 @@ def onCommandE(sender,args):
         sender.sendMessage("03 - "+color("e")+"Haste")
         sender.sendMessage("04 - "+color("8")+"Mining Fatigue")
         sender.sendMessage("05 - "+color("c")+"Strength")
-        sender.sendMessage(""+color("6")+"Page "+color("c")+"1 "+color("6")+"of "+color("c")+"4")
+        sender.sendMessage(color("6")+"Page "+color("c")+"1 "+color("6")+"of "+color("c")+"4")
         return True
     if args[0] == "2":
         sender.sendMessage("06 - "+color("4")+"Health")
@@ -55,7 +55,7 @@ def onCommandE(sender,args):
         sender.sendMessage("08 - "+color("3")+"Jump Boost")
         sender.sendMessage("09 - "+color("7")+"Nausea")
         sender.sendMessage("10 - "+color("d")+"Regeneration")
-        sender.sendMessage(""+color("6")+"Page "+color("c")+"2 "+color("6")+"of "+color("c")+"4")
+        sender.sendMessage(color("6")+"Page "+color("c")+"2 "+color("6")+"of "+color("c")+"4")
         return True
     if args[0] == "3":
         sender.sendMessage("11 - "+color("5")+"Resistance")
@@ -63,7 +63,7 @@ def onCommandE(sender,args):
         sender.sendMessage("13 - "+color("3")+"Water Breathing")
         sender.sendMessage("14 - "+color("8")+"Invisibility")
         sender.sendMessage("15 - "+color("8")+"Blindness")
-        sender.sendMessage(""+color("6")+"Page "+color("c")+"3 "+color("6")+"of "+color("c")+"4")
+        sender.sendMessage(color("6")+"Page "+color("c")+"3 "+color("6")+"of "+color("c")+"4")
         return True
     if args[0] == "4":
         sender.sendMessage("16 - "+color("1")+"Night Vision")
@@ -71,14 +71,14 @@ def onCommandE(sender,args):
         sender.sendMessage("18 - "+color("8")+"Weakness")
         sender.sendMessage("19 - "+color("2")+"Poison")
         sender.sendMessage("20 - "+color("8")+"Wither")
-        sender.sendMessage(""+color("6")+"Page "+color("c")+"4 "+color("6")+"of "+color("c")+"4")
+        sender.sendMessage(color("6")+"Page "+color("c")+"4 "+color("6")+"of "+color("c")+"4")
         return True
     sender.sendMessage("01 - "+color("b")+"Speed")
     sender.sendMessage("02 - "+color("9")+"Slowness")
     sender.sendMessage("03 - "+color("e")+"Haste")
     sender.sendMessage("04 - "+color("8")+"Mining Fatigue")
     sender.sendMessage("05 - "+color("c")+"Strength")
-    sender.sendMessage(""+color("6")+"Page "+color("c")+"1 "+color("6")+"of "+color("c")+"4")
+    sender.sendMessage(color("6")+"Page "+color("c")+"1 "+color("6")+"of "+color("c")+"4")
     return True
 
 # Show chat colors
@@ -108,17 +108,22 @@ def onCommandRandom(sender,args):
     if len(args) == 1 and args[0].isdigit() == True:
         sender.sendMessage(str(random.randint(0,int(args[0]))))
     if len(args) == 2 and args[0].isdigit() == True and args[1].isdigit() == True:
+        if args[0] > args[1]:
+            sender.sendMessage(str(random.randint(int(args[1]),int(args[0]))))
+            return True
         sender.sendMessage(str(random.randint(int(args[0]),int(args[1]))))
     if len(args) == 0:
         sender.sendMessage(str(random.randint(0,10)))
     if len(args) > 2:
-        sender.sendMessage(""+color("c")+"Use the syntax "+color("6")+"/random [a] [b]")
+        sender.sendMessage(color("c")+"Use the syntax "+color("6")+"/random [a] [b]")
         return False
     return True
                            
 # Item Renaming
 @hook.command("itemname", description="Rename and recolour an item!")
 def onCommandItemname(sender,args):
+    if len(args) == 0:
+        sender.sendMessage(color("c")+"You must have an argument -"+color("6"),"/itemname [name] [format1] [format2] etc.")
     addpos = 0
     namestring = list(args[0])
     for x in range(1,len(args)):
@@ -128,9 +133,8 @@ def onCommandItemname(sender,args):
                 namestring.insert(addpos,color((args[x])[i]))
                 addpos = addpos + 2
             else:
-                sender.sendMessage(""+color("4")+"I'm sorry, the format",(args[x])[i],"is not availible.")
-    str(namestring)
-    
+                sender.sendMessage(color("c")+"Sorry, the format",color("6")+(args[x])[i],color("c")+"is not availible.")
+    sender.setDisplayName(sender.getItemInHand(),str(namestring))
     return True
 
 
