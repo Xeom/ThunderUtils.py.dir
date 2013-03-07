@@ -124,7 +124,6 @@ def onCommandItemname(sender,args):
                 sender.sendMessage("\u00a74I'm sorry, the format",(args[x])[i],"\u00a7is not availible.")
     str(namestring)
     sender.getInventory().setDisplayName(sender.getItemInHand(),namestring)
-    print(namestring)
     return True
 
 
