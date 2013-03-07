@@ -41,6 +41,7 @@ def onCommandFixLag(sender, args):
 # Effects
 @hook.command("e", description="List potion effect NBT values.")
 def onCommandE(sender,args):
+    
     if len(args) != 1:
         sender.sendMessage("01 - "+color("b")+"Speed")
         sender.sendMessage("02 - "+color("9")+"Slowness")
@@ -49,6 +50,7 @@ def onCommandE(sender,args):
         sender.sendMessage("05 - "+color("c")+"Strength")
         sender.sendMessage(color("6")+"Page "+color("c")+"1 "+color("6")+"of "+color("c")+"4")
         return True
+    
     if args[0] == "2":
         sender.sendMessage("06 - "+color("4")+"Health")
         sender.sendMessage("07 - "+color("8")+"Damage")
@@ -57,6 +59,7 @@ def onCommandE(sender,args):
         sender.sendMessage("10 - "+color("d")+"Regeneration")
         sender.sendMessage(color("6")+"Page "+color("c")+"2 "+color("6")+"of "+color("c")+"4")
         return True
+    
     if args[0] == "3":
         sender.sendMessage("11 - "+color("5")+"Resistance")
         sender.sendMessage("12 - "+color("6")+"Fire Resistance")
@@ -65,6 +68,7 @@ def onCommandE(sender,args):
         sender.sendMessage("15 - "+color("8")+"Blindness")
         sender.sendMessage(color("6")+"Page "+color("c")+"3 "+color("6")+"of "+color("c")+"4")
         return True
+    
     if args[0] == "4":
         sender.sendMessage("16 - "+color("1")+"Night Vision")
         sender.sendMessage("17 - "+color("a")+"Hunger")
@@ -73,6 +77,7 @@ def onCommandE(sender,args):
         sender.sendMessage("20 - "+color("8")+"Wither")
         sender.sendMessage(color("6")+"Page "+color("c")+"4 "+color("6")+"of "+color("c")+"4")
         return True
+    
     sender.sendMessage("01 - "+color("b")+"Speed")
     sender.sendMessage("02 - "+color("9")+"Slowness")
     sender.sendMessage("03 - "+color("e")+"Haste")
@@ -105,36 +110,50 @@ def onCommandSave(sender, args):
 # Random number
 @hook.command("random", description="Produce a random number.")
 def onCommandRandom(sender,args):
+    
     if len(args) == 1 and args[0].isdigit() == True:
         sender.sendMessage(str(random.randint(0,int(args[0]))))
+        return True
+    
     if len(args) == 2 and args[0].isdigit() == True and args[1].isdigit() == True:
         if args[0] > args[1]:
             sender.sendMessage(str(random.randint(int(args[1]),int(args[0]))))
             return True
+        return True
         sender.sendMessage(str(random.randint(int(args[0]),int(args[1]))))
+    
     if len(args) == 0:
         sender.sendMessage(str(random.randint(0,10)))
-    if len(args) > 2:
-        sender.sendMessage(color("c")+"Use the syntax "+color("6")+"/random [a] [b]")
-        return False
-    return True
+        return True
+    
+    if len(args) == 3 and args[0].isdigit == True and args[1].isdigit == True and args[2].isdigit == True:
+        sender.sendMessage(str((random.randint(args[2]*int(args[0]),args[2]*int(args[1]))))/args[2])
+    sender.sendMessage(color("c")+"Use the syntax "+color("6")+"/random [a] [b] [precision]")
+    return False
                            
 # Item Renaming
 @hook.command("itemname", description="Rename and recolour an item!")
 def onCommandItemname(sender,args):
+    
     if len(args) == 0:
         sender.sendMessage(color("c")+"You must have an argument -"+color("6"),"/itemname [name] [format1] [format2] etc.")
+    
     addpos = 0
     namestring = list(args[0])
+    
     for x in range(1,len(args)):
         addpos = addpos + 1
+        
         for i in range(0, len(args[x])):
+            
             if itemnamewhitelist.count((args[x])[i]) == 1:
                 namestring.insert(addpos,color((args[x])[i]))
                 addpos = addpos + 2
+            
             else:
                 sender.sendMessage(color("c")+"Sorry, the format",color("6")+(args[x])[i],color("c")+"is not availible.")
-    sender.setDisplayName(sender.getItemInHand(),str(namestring))
+    sender.sendMessage(str(namestring))
+    
     return True
 
 
