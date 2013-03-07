@@ -41,36 +41,44 @@ def onCommandFixLag(sender, args):
 # Effects
 @hook.command("e", description="List potion effect NBT values.")
 def onCommandE(sender,args):
+    if len(args) != 1:
+        sender.sendMessage("01 - "+color("b")+"Speed")
+        sender.sendMessage("02 - "+color("9")+"Slowness")
+        sender.sendMessage("03 - "+color("e")+"Haste")
+        sender.sendMessage("04 - "+color("8")+"Mining Fatigue")
+        sender.sendMessage("05 - "+color("c")+"Strength")
+        sender.sendMessage(""+color("6")+"Page "+color("c")+"1 "+color("6")+"of "+color("c")+"4")
+        return True
     if args[0] == "2":
-        sender.sendMessage("06 - \u00A74Health")
-        sender.sendMessage("07 - \u00A70Damage")
-        sender.sendMessage("08 - \u00A75Jump Boost")
-        sender.sendMessage("09 - \u00A77Nausea")
-        sender.sendMessage("10 - \u00A7dRegeneration")
-        sender.sendMessage("\u00A76Page \u00A7c2 \u00A76of \u00A7c4")
+        sender.sendMessage("06 - "+color("4")+"Health")
+        sender.sendMessage("07 - "+color("0")+"Damage")
+        sender.sendMessage("08 - "+color("3")+"Jump Boost")
+        sender.sendMessage("09 - "+color("7")+"Nausea")
+        sender.sendMessage("10 - "+color("d")+"Regeneration")
+        sender.sendMessage(""+color("6")+"Page "+color("c")+"2 "+color("6")+"of "+color(c)+"4")
         return True
     if args[0] == "3":
-        sender.sendMessage("11 - \u00A75Resistance")
-        sender.sendMessage("12 - \u00A76Fire Resistance")
-        sender.sendMessage("13 - \u00A73Water Breathing")
-        sender.sendMessage("14 - \u00A78Invisibility")
-        sender.sendMessage("15 - \u00A70Blindness")
-        sender.sendMessage("\u00A76Page \u00A7c3 \u00A76of \u00A7c4")
+        sender.sendMessage("11 - "+color("5")+"Resistance")
+        sender.sendMessage("12 - "+color("6")+"Fire Resistance")
+        sender.sendMessage("13 - "+color("3")+"Water Breathing")
+        sender.sendMessage("14 - "+color("8")+"Invisibility")
+        sender.sendMessage("15 - "+color("0")+"Blindness")
+        sender.sendMessage(""+color("6")+"Page "+color("c")+"3 "+color("6")+"of "+color("c")+"4")
         return True
     if args[0] == "4":
-        sender.sendMessage("16 - \u00A74Night Vision")
-        sender.sendMessage("17 - \u00A7aHunger")
-        sender.sendMessage("18 - \u00A78Weakness")
-        sender.sendMessage("19 - \u00A72Poison")
-        sender.sendMessage("20 - \u00A70Wither")
-        sender.sendMessage("\u00A76Page \u00A7c3 \u00A76of \u00A7c4")
+        sender.sendMessage("16 - "+color("1")+"Night Vision")
+        sender.sendMessage("17 - "+color("a")+"Hunger")
+        sender.sendMessage("18 - "+color("8")+"Weakness")
+        sender.sendMessage("19 - "+color("2")+"Poison")
+        sender.sendMessage("20 - "+color("0")+"Wither")
+        sender.sendMessage(""+color("6")+"Page "+color("c")+"4 "+color("6")+"of "+color("c")+"4")
         return True
-    sender.sendMessage("01 - \u00A7bSpeed")
-    sender.sendMessage("02 - \u00A79Slowness")
-    sender.sendMessage("03 - \u00A7eHaste")
-    sender.sendMessage("04 - \u00A78Mining Fatigue")
-    sender.sendMessage("05 - \u00A7cStrength")
-    sender.sendMessage("\u00A76Page \u00A7c1 \u00A76of \u00A7c4")
+    sender.sendMessage("01 - "+color("b")+"Speed")
+    sender.sendMessage("02 - "+color("9")+"Slowness")
+    sender.sendMessage("03 - "+color("e")+"Haste")
+    sender.sendMessage("04 - "+color("8")+"Mining Fatigue")
+    sender.sendMessage("05 - "+color("c")+"Strength")
+    sender.sendMessage(""+color("6")+"Page "+color("c")+"1 "+color("6")+"of "+color("c")+"4")
     return True
 
 # Show chat colors
@@ -101,10 +109,10 @@ def onCommandRandom(sender,args):
         sender.sendMessage(str(random.randint(0,args[0])))
     if len(args) == 2 and args[0].isdigit() == True and args[1].isdigit() == True:
         sender.sendMessage(str(random.randint(int(args[0]),int(args[1]))))
-    if len(args) == 1:
+    if len(args) == 0:
         sender.sendMessage(str(random.randint(0,10)))
     if len(args) > 2:
-        sender.sendMessage("\u00a7cUse the syntax &u00a76/random [a] [b]")
+        sender.sendMessage(""+color("c")+"Use the syntax "+color("6")+"/random [a] [b]")
         return False
     return True
                            
@@ -121,9 +129,9 @@ def onCommandItemname(sender,args):
                 namestring.insert(addpos,(args[x])[i])
                 addpos = addpos + 2
             else:
-                sender.sendMessage("\u00a74I'm sorry, the format",(args[x])[i],"\u00a7is not availible.")
+                sender.sendMessage(""+color("4")+"I'm sorry, the format",(args[x])[i],"is not availible.")
     str(namestring)
-    sender.getInventory().setDisplayName(sender.getItemInHand(),namestring)
+    bukkit.inventory.meta.ItemMeta.setDisplayName(sender.getItemInHand(),namestring)
     return True
 
 
