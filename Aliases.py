@@ -51,18 +51,18 @@ def onCommandE(sender,args):
         return True
     if args[0] == "2":
         sender.sendMessage("06 - "+color("4")+"Health")
-        sender.sendMessage("07 - "+color("0")+"Damage")
+        sender.sendMessage("07 - "+color("8")+"Damage")
         sender.sendMessage("08 - "+color("3")+"Jump Boost")
         sender.sendMessage("09 - "+color("7")+"Nausea")
         sender.sendMessage("10 - "+color("d")+"Regeneration")
-        sender.sendMessage(""+color("6")+"Page "+color("c")+"2 "+color("6")+"of "+color(c)+"4")
+        sender.sendMessage(""+color("6")+"Page "+color("c")+"2 "+color("6")+"of "+color("c")+"4")
         return True
     if args[0] == "3":
         sender.sendMessage("11 - "+color("5")+"Resistance")
         sender.sendMessage("12 - "+color("6")+"Fire Resistance")
         sender.sendMessage("13 - "+color("3")+"Water Breathing")
         sender.sendMessage("14 - "+color("8")+"Invisibility")
-        sender.sendMessage("15 - "+color("0")+"Blindness")
+        sender.sendMessage("15 - "+color("8")+"Blindness")
         sender.sendMessage(""+color("6")+"Page "+color("c")+"3 "+color("6")+"of "+color("c")+"4")
         return True
     if args[0] == "4":
@@ -70,7 +70,7 @@ def onCommandE(sender,args):
         sender.sendMessage("17 - "+color("a")+"Hunger")
         sender.sendMessage("18 - "+color("8")+"Weakness")
         sender.sendMessage("19 - "+color("2")+"Poison")
-        sender.sendMessage("20 - "+color("0")+"Wither")
+        sender.sendMessage("20 - "+color("8")+"Wither")
         sender.sendMessage(""+color("6")+"Page "+color("c")+"4 "+color("6")+"of "+color("c")+"4")
         return True
     sender.sendMessage("01 - "+color("b")+"Speed")
@@ -106,7 +106,7 @@ def onCommandSave(sender, args):
 @hook.command("random", description="Produce a random number.")
 def onCommandRandom(sender,args):
     if len(args) == 1 and args[0].isdigit() == True:
-        sender.sendMessage(str(random.randint(0,args[0])))
+        sender.sendMessage(str(random.randint(0,int(args[0]))))
     if len(args) == 2 and args[0].isdigit() == True and args[1].isdigit() == True:
         sender.sendMessage(str(random.randint(int(args[0]),int(args[1]))))
     if len(args) == 0:
@@ -125,13 +125,12 @@ def onCommandItemname(sender,args):
         addpos = addpos + 1
         for i in range(0, len(args[x])):
             if itemnamewhitelist.count((args[x])[i]) == 1:
-                namestring.insert(addpos-1,"\u00A7")
-                namestring.insert(addpos,(args[x])[i])
+                namestring.insert(addpos,color((args[x])[i]))
                 addpos = addpos + 2
             else:
                 sender.sendMessage(""+color("4")+"I'm sorry, the format",(args[x])[i],"is not availible.")
     str(namestring)
-    bukkit.inventory.meta.ItemMeta.setDisplayName(sender.getItemInHand(),namestring)
+    
     return True
 
 
