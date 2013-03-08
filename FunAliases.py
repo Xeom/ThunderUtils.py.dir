@@ -55,14 +55,14 @@ def onCommandConfused(sender, args):
     broadcast_animal_sound(sender, "has ALL THE CONFUSION!")
     return True
 
-@hook.command("nope", description="Don't you dare!")
+@hook.command("nope", description="Nope.avi")
 def onCommandNope(sender, args):
     sender.sendMessage("Chuck Testa!")
     return True
 
 @hook.command("lag", description="Fix the server's lag!")
 def onCommandLag(sender, args):
-    sender.kickPlayer("I FIXED YOUR LAG! :D <3 Jessassin :P")
+    sender.kickPlayer("No more lag! <3 RSW :3")
     return True
 
 @hook.command("join", description="Make someone join the server!", usage="/<command> <player> [location]")
@@ -73,6 +73,15 @@ def onCommandJoin(sender, args):
     
     if len(args) > 1:
         bukkit.Bukkit.broadcastMessage(''.join(["Player ", args[0], " comes from ", args[1]]))
+
+    return True
+
+@hook.command("leave", description="Make someone leave the server!", usage="/<command> <player>")
+def onCommandLeave(sender, args):
+    if len(args) < 1:
+        return False
+    
+    bukkit.Bukkit.broadcastMessage(''.join([color("e"), args[0], " left the game"]))
 
     return True
 
